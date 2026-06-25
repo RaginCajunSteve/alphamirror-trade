@@ -1,0 +1,150 @@
+name: Deploy to Cloudflare (Workers + Pages)
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+    inputs:
+      deploy_main:
+        description: 'Deploy main Next.js app (OpenNext Worker)'
+        required: false
+        default: 'true'
+        type: boolean
+      deploy_background:
+        description: 'Deploy background workers (keeper, indexer, support, emails, ops)'
+        required: false
+        default: 'false'
+        type: boolean
+
+concurrency:
+  group: cloudflare-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-main-app:
+    if: github.event.inputs.deploy_main != 'false'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Deploy the main Next.js site via OpenNext + Wrangler.
+      # This serves the full website (UI + API routes) on alphamirror.trade.
+      # Best performance: runs on Cloudflare's edge network with full server capabilities.
+      - name: Deploy main app (alpha-wallet-mirror Worker)
+        run: npm run deploy:cf
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          # Any additional public vars can be overridden here or come from wrangler.jsonc
+          # NEXT_PUBLIC_APP_URL is already in wrangler.jsonc
+
+  deploy-background-workers:
+    if: github.event.inputs.deploy_background == 'true' || (github.event_name == 'push' && contains(github.event.head_commit.modified, 'workers/'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # These are independent background Workers.
+      # Deploy only when needed (manual trigger or when their code changes).
+      - name: Deploy keeper (cron pipeline)
+        if: always()
+        run: npm run deploy:keeper
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Deploy indexer
+        if: always()
+        run: npm run deploy:indexer
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Deploy support + jobs
+        if: always()
+        run: |
+          npm run deploy:support || true
+          npm run deploy:support-jobs || true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Deploy email workers
+        if: always()
+        run: |
+          npm run deploy:inbox-email || true
+          npm run deploy:billing-email || true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Deploy ops loop
+        if: always()
+        run: npm run deploy:ops-loop
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+  # Optional: Deploy a static version to Cloudflare Pages for maximum static asset performance.
+  # The static build (marketing pages, pre-rendered wallets) can live on Pages (super fast CDN).
+  # Dynamic features and APIs continue to come from the Worker(s).
+  # Enable this job if you want to experiment with a hybrid Pages + Worker architecture.
+  deploy-static-to-pages:
+    # Change to always() or specific condition if you want this active
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+
+      - name: Build static export
+        run: npm run build:static
+        env:
+          NEXT_PUBLIC_API_BASE: https://alphamirror.trade   # or https://api.alphamirror.trade
+          # Add other NEXT_PUBLIC_* vars here
+
+      - name: Deploy to Cloudflare Pages (static assets)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: pages deploy out --project-name=alphamirror-static --branch=${{ github.ref_name }}
+        # Create the Pages project once in the Cloudflare dashboard if it doesn't exist.
+
+# === Setup Instructions ===
+# 1. Create a Cloudflare API Token (recommended for CI):
+#    - Go to https://dash.cloudflare.com/profile/api-tokens
+#    - Create token with these permissions (or use "Edit Workers & Pages" template + DNS if needed):
+#      - Account > Workers Scripts : Edit
+#      - Account > Workers KV Storage : Edit (if you upload data)
+#      - Zone > Zone : Read (for your domain)
+#    - Add it as GitHub secret: CLOUDFLARE_API_TOKEN
+#
+# 2. (Optional but recommended) Store public vars as GitHub repo variables
+#    or keep them in wrangler.*.jsonc.
+#
+# 3. For the main Worker to keep the custom domain, the wrangler.jsonc routes stay as-is.
+#
+# 4. Run deploys:
+#    - Normal push to main → deploys the main app.
+#    - Manual "workflow_dispatch" with deploy_background=true for the supporting workers.
+#
+# This setup means all production website files and operation live on Cloudflare.
+# Your local computer only needs to be used for development (git push + npm run dev).
