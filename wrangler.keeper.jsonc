@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "alpha-wallet-keeper",
+  "account_id": "5d39e0d1c74578fc6762947412e84add",
+  "main": "workers/pipeline-cron.mjs",
+  "compatibility_date": "2026-06-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "triggers": {
+    "crons": ["*/2 * * * *"]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "DATA_KV",
+      "id": "d17fd1e288ee414c9a1b89db3996a7a6"
+    }
+  ],
+  "vars": {
+    "NETWORK_MODE": "mainnet",
+    "RPC_URL_ETHEREUM": "https://ethereum.publicnode.com",
+    "RPC_URL_BASE": "https://mainnet.base.org",
+    "RPC_URL_ARBITRUM": "https://arb1.arbitrum.io/rpc",
+    "RPC_URL_ARBITRUM_EXECUTION": "https://arb1.arbitrum.io/rpc",
+    "RPC_URL_OPTIMISM": "https://mainnet.optimism.io",
+    "RPC_URL_OPTIMISM_EXECUTION": "https://mainnet.optimism.io",
+    "RPC_URL_EXECUTION": "https://mainnet.base.org",
+    "NEXT_PUBLIC_MIRROR_ROUTER_ADDRESS": "0x1e282104732827dcf63bfc958a778f5116330fcc",
+    "NEXT_PUBLIC_MIRROR_ROUTER_ARBITRUM": "0xefe995d1f4ff06dc0cf08d1bcbdae74e5f99deb4",
+    "NEXT_PUBLIC_MIRROR_ROUTER_OPTIMISM": "0xefe995d1f4ff06dc0cf08d1bcbdae74e5f99deb4"
+  }
+}

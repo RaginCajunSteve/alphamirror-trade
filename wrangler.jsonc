@@ -1,0 +1,51 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "alpha-wallet-mirror",
+  "account_id": "5d39e0d1c74578fc6762947412e84add",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-06-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "send_email": [
+    {
+      "name": "EMAIL"
+    }
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "DATA_KV",
+      "id": "d17fd1e288ee414c9a1b89db3996a7a6"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "alphamirror.trade",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.alphamirror.trade",
+      "custom_domain": true
+    }
+  ],
+  "workers_dev": true,
+  "vars": {
+    "NEXT_PUBLIC_SUPPORT_AGENT_URL": "https://alpha-wallet-support.alpha-wallet.workers.dev",
+    "NEXT_PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAADpHET5z-RwtU2Sn",
+    "STRIPE_PRO_PRICE_ID": "price_1Tl3p0RwPzYxt64JqI1o8BfZ",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "pk_live_51Tl0RMRwPzYxt64Jrd0KgVmO9SWIStJaDJkBP0LcyqEwSsVq2bzLjiWqIBC5kNU4uVuW0kf0o7cQVoOzA3TwhZuN002B0LlK3u",
+    "NEXT_PUBLIC_MIRROR_ROUTER_ADDRESS": "0x1e282104732827dcf63bfc958a778f5116330fcc",
+    "NEXT_PUBLIC_MIRROR_ROUTER_ARBITRUM": "0xefe995d1f4ff06dc0cf08d1bcbdae74e5f99deb4",
+    "NEXT_PUBLIC_MIRROR_ROUTER_OPTIMISM": "0xefe995d1f4ff06dc0cf08d1bcbdae74e5f99deb4",
+    "NEXT_PUBLIC_NETWORK_MODE": "mainnet",
+    "NEXT_PUBLIC_APP_URL": "https://alphamirror.trade",
+    "RPC_URL_ETHEREUM": "https://ethereum.publicnode.com",
+    "RPC_URL_BASE": "https://base.drpc.org",
+    "RPC_URL_ARBITRUM": "https://arb1.arbitrum.io/rpc",
+    "RPC_URL_ARBITRUM_EXECUTION": "https://arb1.arbitrum.io/rpc",
+    "RPC_URL_OPTIMISM": "https://mainnet.optimism.io",
+    "RPC_URL_OPTIMISM_EXECUTION": "https://mainnet.optimism.io"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "alpha-wallet-ops-loop",
+  "account_id": "5d39e0d1c74578fc6762947412e84add",
+  "main": "workers/ops-loop.mjs",
+  "compatibility_date": "2026-06-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "triggers": {
+    "crons": ["0 * * * *"]
+  },
+  "send_email": [
+    {
+      "name": "EMAIL"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "DATA_KV",
+      "id": "d17fd1e288ee414c9a1b89db3996a7a6"
+    }
+  ],
+  "vars": {
+    "OPS_COST_BASELINE_LOCKED": "1",
+    "OPS_OWNER_EMAIL": "steven.comeau@lightningcomms.net",
+    "NEXT_PUBLIC_APP_URL": "https://alphamirror.trade",
+    "NEXT_PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAADpHET5z-RwtU2Sn"
+  }
+}

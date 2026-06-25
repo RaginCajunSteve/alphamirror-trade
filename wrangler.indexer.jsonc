@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "alpha-wallet-indexer",
+  "account_id": "5d39e0d1c74578fc6762947412e84add",
+  "main": "workers/leaderboard-indexer.mjs",
+  "compatibility_date": "2026-06-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "triggers": {
+    "crons": ["0 */6 * * *"]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "DATA_KV",
+      "id": "d17fd1e288ee414c9a1b89db3996a7a6"
+    }
+  ],
+  "vars": {
+    "OPS_COST_BASELINE_LOCKED": "1",
+    "OPS_OWNER_EMAIL": "steven.comeau@lightningcomms.net",
+    "INDEXER_SCORE_ONLY": "1",
+    "INDEXER_WATCH_CHAINS": "ethereum,arbitrum,polygon,unichain,linea,blast",
+    "RPC_URL_ETHEREUM": "https://ethereum.publicnode.com",
+    "RPC_URL_BASE": "https://base-rpc.publicnode.com",
+    "RPC_URL_ARBITRUM": "https://arbitrum.llamarpc.com"
+  }
+}

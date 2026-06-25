@@ -1,0 +1,233 @@
+[
+  {
+    "id": "mirror-mqogonoi",
+    "userAddress": "0xSmokeTest000000000000000000000000000001",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "paper",
+    "perTradeCapUsd": 500,
+    "dailyCapUsd": 2000,
+    "userRatioPct": 10,
+    "allowedChains": [
+      "base",
+      "arbitrum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T00:12:43.362Z"
+  },
+  {
+    "id": "mirror-mqohhw1k",
+    "userAddress": "0xSmokeTest000000000000000000000000000001",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "paper",
+    "perTradeCapUsd": 500,
+    "dailyCapUsd": 2000,
+    "userRatioPct": 10,
+    "allowedChains": [
+      "base",
+      "arbitrum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T00:35:27.224Z"
+  },
+  {
+    "id": "mirror-mqoj5n3w",
+    "userAddress": "0x1A3Fb6EEbee78003d0140ebD4B46Fe0ebd22C45c",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "paper",
+    "perTradeCapUsd": 1,
+    "dailyCapUsd": 100,
+    "userRatioPct": 100,
+    "allowedChains": [
+      "base",
+      "arbitrum",
+      "ethereum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T01:21:55.004Z"
+  },
+  {
+    "id": "mirror-mqojxy34",
+    "userAddress": "0xSmokeTest000000000000000000000000000001",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "paper",
+    "perTradeCapUsd": 500,
+    "dailyCapUsd": 2000,
+    "userRatioPct": 10,
+    "allowedChains": [
+      "base",
+      "arbitrum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T01:43:55.600Z"
+  },
+  {
+    "id": "mirror-mqok2dfh",
+    "userAddress": "0x1A3Fb6EEbee78003d0140ebD4B46Fe0ebd22C45c",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "paper",
+    "perTradeCapUsd": 1,
+    "dailyCapUsd": 50,
+    "userRatioPct": 10,
+    "allowedChains": [
+      "base",
+      "arbitrum",
+      "ethereum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T01:47:22.109Z"
+  },
+  {
+    "id": "mirror-mqok7bfr",
+    "userAddress": "0xSmokeTest000000000000000000000000000001",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "paper",
+    "perTradeCapUsd": 500,
+    "dailyCapUsd": 2000,
+    "userRatioPct": 10,
+    "allowedChains": [
+      "base",
+      "arbitrum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T01:51:12.807Z"
+  },
+  {
+    "id": "mirror-mqokalkn",
+    "userAddress": "0x1A3Fb6EEbee78003d0140ebD4B46Fe0ebd22C45c",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "paper",
+    "perTradeCapUsd": 500,
+    "dailyCapUsd": 2000,
+    "userRatioPct": 10,
+    "allowedChains": [
+      "base",
+      "arbitrum",
+      "ethereum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T01:53:45.911Z"
+  },
+  {
+    "id": "mirror-mqolrw69",
+    "userAddress": "0xSmokeTest000000000000000000000000000001",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "paper",
+    "perTradeCapUsd": 500,
+    "dailyCapUsd": 2000,
+    "userRatioPct": 10,
+    "allowedChains": [
+      "base",
+      "arbitrum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T02:35:12.417Z"
+  },
+  {
+    "id": "mirror-mqolz4ui",
+    "userAddress": "0xSmokeTest000000000000000000000000000001",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "paper",
+    "perTradeCapUsd": 500,
+    "dailyCapUsd": 2000,
+    "userRatioPct": 10,
+    "allowedChains": [
+      "base",
+      "arbitrum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T02:40:50.250Z"
+  },
+  {
+    "id": "mirror-mqom0b6y",
+    "userAddress": "0xSmokeTest000000000000000000000000000001",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "paper",
+    "perTradeCapUsd": 500,
+    "dailyCapUsd": 2000,
+    "userRatioPct": 10,
+    "allowedChains": [
+      "base",
+      "arbitrum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T02:41:45.130Z"
+  },
+  {
+    "id": "mirror-mqonvwdi",
+    "userAddress": "0x1A3Fb6EEbee78003d0140ebD4B46Fe0ebd22C45c",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "paused",
+    "mode": "live",
+    "perTradeCapUsd": 1,
+    "dailyCapUsd": 10,
+    "userRatioPct": 10,
+    "allowedChains": [
+      "base",
+      "arbitrum",
+      "ethereum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T03:34:18.534Z"
+  },
+  {
+    "id": "mirror-mqoo968y",
+    "userAddress": "0x1A3Fb6EEbee78003d0140ebD4B46Fe0ebd22C45c",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "paused",
+    "mode": "live",
+    "perTradeCapUsd": 1,
+    "dailyCapUsd": 5,
+    "userRatioPct": 5,
+    "allowedChains": [
+      "base",
+      "arbitrum",
+      "ethereum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T03:44:37.858Z"
+  },
+  {
+    "id": "mirror-mqoqxasa",
+    "userAddress": "0x1A3Fb6EEbee78003d0140ebD4B46Fe0ebd22C45c",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "active",
+    "mode": "live",
+    "perTradeCapUsd": 1,
+    "dailyCapUsd": 5,
+    "userRatioPct": 5,
+    "allowedChains": [
+      "base",
+      "arbitrum",
+      "ethereum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T04:59:22.714Z"
+  },
+  {
+    "id": "mirror-mqoqzkft",
+    "userAddress": "0x1A3Fb6EEbee78003d0140ebD4B46Fe0ebd22C45c",
+    "alphaWallet": "0x7A3f8C2e1b9d4a6f0e8c5B2D1A9f7e4C3b8A6D5e",
+    "status": "paused",
+    "mode": "live",
+    "perTradeCapUsd": 2,
+    "dailyCapUsd": 5,
+    "userRatioPct": 2,
+    "allowedChains": [
+      "base",
+      "arbitrum",
+      "ethereum"
+    ],
+    "denylistTokens": [],
+    "createdAt": "2026-06-22T05:01:08.537Z"
+  }
+]

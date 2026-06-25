@@ -1,101 +1,125 @@
-import Image from "next/image";
+import Link from "next/link";
+import { DisclaimerBanner } from "@/components/DisclaimerBanner";
+import { getSiteStats } from "@/lib/indexer/meta";
+import {
+  leaderboardChainsLabel,
+} from "@/lib/network-config";
 
-export default function Home() {
+export default async function HomePage() {
+  const stats = await getSiteStats();
+  const indexChains = leaderboardChainsLabel();
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="space-y-16">
+      <section className="py-8 text-center">
+        <p className="text-sm font-medium uppercase tracking-widest text-accent">
+          Top 0.5% on-chain performers
+        </p>
+        <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+          Copy elite wallets.
+          <br />
+          <span className="text-muted">Keep your keys.</span>
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted">
+          We surface wallets with strong on-chain results across {indexChains}. Mirror via Pro (EVM) or instantly for free on Solana &amp; BSC — you always sign the tx yourself.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <Link
+            href="/leaderboard"
+            className="rounded-xl bg-accent px-6 py-3 font-medium text-accent-foreground hover:bg-accent/90"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            View leaderboard
+          </Link>
+          <Link
+            href="/pricing"
+            className="rounded-xl border border-accent/40 px-6 py-3 font-medium text-accent hover:bg-accent/10"
           >
-            Read our docs
-          </a>
+            Pro from $29/mo
+          </Link>
+          <Link
+            href="/how-it-works"
+            className="rounded-xl border border-border px-6 py-3 font-medium hover:border-accent/50"
+          >
+            How it works
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { label: "Wallets tracked", value: stats.walletsTracked.toLocaleString() },
+          { label: "Elite tier (0.5%)", value: stats.eliteCount.toLocaleString() },
+          {
+            label: "Avg risk-adj ROI",
+            value: stats.avgRiskAdjRoi > 0 ? `${stats.avgRiskAdjRoi}x` : "—",
+          },
+          { label: "Active mirrors", value: stats.mirrorsActive.toLocaleString() },
+        ].map((stat) => (
+          <div
+            key={stat.label}
+            className="rounded-2xl border border-border bg-surface p-5 text-center"
+          >
+            <p className="text-2xl font-semibold text-accent">{stat.value}</p>
+            <p className="mt-1 text-sm text-muted">{stat.label}</p>
+          </div>
+        ))}
+      </section>
+
+      {stats.scoredAt && (
+        <p className="text-center text-xs text-muted">
+          Leaderboard scores updated {new Date(stats.scoredAt).toLocaleString()}
+          {stats.source === "indexer-live" ? " · live indexer" : ""}
+        </p>
+      )}
+
+      <section className="grid gap-6 md:grid-cols-3">
+        {[
+          {
+            title: "Rank",
+            body: "Risk-adjusted ROI over 30d, 90d, and 180d windows. Drawdown matters — not just lucky 100x shots.",
+          },
+          {
+            title: "Decode",
+            body: "Plain-language strategy playbooks: hold time, chain preference, entry patterns retail users can understand.",
+          },
+          {
+            title: "Mirror",
+            body: `Pro: allowance-based bot on EVM. Free instant: client-side on Solana (Jupiter/Helius) + BSC (Pancake). You always sign and keep keys.`,
+          },
+        ].map((item) => (
+          <div key={item.title} className="rounded-2xl border border-border bg-surface p-6">
+            <h3 className="text-lg font-semibold">{item.title}</h3>
+            <p className="mt-2 text-sm text-muted">{item.body}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="rounded-2xl border border-accent/40 bg-surface p-8">
+        <h2 className="text-2xl font-semibold mb-4">Free instant mirroring on Solana &amp; BSC</h2>
+        <div className="grid md:grid-cols-2 gap-6 text-sm">
+          <div>
+            <p className="font-medium mb-2">Solana (Helius + Jupiter)</p>
+            <ol className="list-decimal list-inside space-y-1 text-muted">
+              <li>Connect Phantom wallet.</li>
+              <li>Go to your <Link href="/dashboard" className="text-accent underline">Dashboard</Link>.</li>
+              <li>When a tracked elite Solana wallet swaps (detected instantly via Helius webhook), a pending appears.</li>
+              <li>Click “Mirror Now (Sign)” — we build the Jupiter tx for you. You sign and pay gas.</li>
+            </ol>
+          </div>
+          <div>
+            <p className="font-medium mb-2">BSC / PancakeSwap</p>
+            <ol className="list-decimal list-inside space-y-1 text-muted">
+              <li>Connect MetaMask and switch to BSC.</li>
+              <li>Tracked BSC alphas trading on Pancake create pendings.</li>
+              <li>Sign the swap directly in your wallet (client-side via Pancake Router).</li>
+            </ol>
+            <p className="mt-3 text-xs text-muted">No subscription, no pre-approvals to us, full custody. Real-time low-cost path (separate D1 + worker).</p>
+          </div>
+        </div>
+        <p className="mt-4 text-xs text-muted">See full details on <Link href="/how-it-works" className="underline">How it works</Link> or the dashboard after connecting a wallet. Request additional Solana alphas via support chat.</p>
+      </section>
+
+      <DisclaimerBanner />
     </div>
   );
 }
