@@ -1,8 +1,9 @@
 name: Deploy static site to GitHub Pages (DEPRECATED - see deploy-cloudflare.yml and CLOUDFLARE_BEST_PRACTICES_DEPLOY.md)
 
 on:
-  push:
-    branches: ["main", "master"]
+  # Disabled auto-trigger on push (deprecated in favor of deploy-cloudflare.yml)
+  # push:
+  #   branches: ["main", "master"]
   workflow_dispatch:
 
 permissions:
